@@ -19,7 +19,8 @@ return {
     opts = {
       ensure_installed = {
         "biome",
-        "typescript-language-server",
+        "ts_ls",
+        "tailwindcss",
         "html-lsp",
         "css-lsp",
       },
@@ -65,6 +66,8 @@ return {
     opts = {
       user_default_options = {
         tailwind = true,
+        mode = "virtual_text",
+        virtual_text = "■",
       },
     },
   },
@@ -204,10 +207,10 @@ return {
     lazy = false,
     opts = {
       bigfile = { enabled = true },
-      dashboard = { enabled = true }, 
-      indent = { enabled = true }, 
-      input = { enabled = true }, 
-      notifier = { enabled = true }, 
+      dashboard = { enabled = true },
+      indent = { enabled = true },
+      input = { enabled = true },
+      notifier = { enabled = true },
       quickfile = { enabled = true },
       scroll = { enabled = true },
       statuscolumn = { enabled = true },
@@ -215,10 +218,34 @@ return {
       lazygit = { enabled = true },
     },
     keys = {
-      { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
-      { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
-      { "<c-/>", function() Snacks.terminal() end, desc = "Toggle Terminal" },
-      { "<c-_>", function() Snacks.terminal() end, desc = "which_key_ignore" },
+      {
+        "<leader>gg",
+        function()
+          Snacks.lazygit()
+        end,
+        desc = "Lazygit",
+      },
+      {
+        "<leader>un",
+        function()
+          Snacks.notifier.hide()
+        end,
+        desc = "Dismiss All Notifications",
+      },
+      {
+        "<c-/>",
+        function()
+          Snacks.terminal()
+        end,
+        desc = "Toggle Terminal",
+      },
+      {
+        "<c-_>",
+        function()
+          Snacks.terminal()
+        end,
+        desc = "which_key_ignore",
+      },
     },
   },
 
@@ -227,9 +254,30 @@ return {
     event = "VeryLazy",
     opts = {},
     keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
     },
   },
 
