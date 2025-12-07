@@ -14,7 +14,12 @@ local options = {
     html = { "biome" },
   },
 
-  -- Enable Format on Save
+  formatters = {
+    biome = {
+      args = { "check", "--write", "--stdin-file-path", "$FILENAME" },
+    },
+  },
+
   format_on_save = {
     timeout_ms = 500,
     lsp_fallback = true,
