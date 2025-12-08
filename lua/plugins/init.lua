@@ -16,15 +16,9 @@ return {
 
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "biome",
-        "ts_ls",
-        "tailwindcss",
-        "html-lsp",
-        "css-lsp",
-      },
-    },
+    opts = function()
+      return require "configs.mason"
+    end,
   },
 
   {
@@ -32,57 +26,22 @@ return {
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      require("copilot").setup {
-        suggestion = {
-          enabled = true,
-          auto_trigger = true, -- Suggest automatically as you type
-          keymap = {
-            accept = "<C-l>", -- Ctrl+L
-            next = "<M-]>", -- Alt+] to cycle to the next suggestion
-            prev = "<M-[>", -- Alt+[ to cycle to the previous suggestion
-            dismiss = "<C-]>", -- Ctrl+] to dismiss the suggestion
-          },
-        },
-        panel = {
-          enabled = false, -- Disable the bulky side panel
-        },
-        filetypes = {
-          yaml = false,
-          markdown = false,
-          help = false,
-          gitcommit = false,
-          gitrebase = false,
-          hgcommit = false,
-          svn = false,
-          cvs = false,
-          ["."] = false,
-        },
-      }
+      require("copilot").setup(require "configs.copilot")
     end,
   },
 
   {
     "NvChad/nvim-colorizer.lua",
-    opts = {
-      user_default_options = {
-        tailwind = true,
-        mode = "virtual_text",
-        virtual_text = "■",
-      },
-    },
+    opts = function()
+      return require "configs.colorizer"
+    end,
   },
 
   {
     "windwp/nvim-ts-autotag",
-    event = "InsertEnter", -- Load when you start typing
+    event = "InsertEnter",
     config = function()
-      require("nvim-ts-autotag").setup {
-        opts = {
-          enable_close = true, -- Auto close tags
-          enable_rename = true, -- Auto rename pairs of tags
-          enable_close_on_slash = false, -- Auto close on trailing </
-        },
-      }
+      require("nvim-ts-autotag").setup(require "configs.ts-autotag")
     end,
   },
 
@@ -99,20 +58,9 @@ return {
     "nvim-tree/nvim-tree.lua",
     lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      view = {
-        side = "right",
-        width = 30,
-      },
-      filters = {
-        dotfiles = false,
-        git_ignored = false,
-      },
-      git = {
-        enable = true,
-        ignore = false,
-      },
-    },
+    opts = function()
+      return require "configs.nvim-tree"
+    end,
     config = function(_, opts)
       require("nvim-tree").setup(opts)
 
@@ -145,31 +93,14 @@ return {
     "HiPhish/rainbow-delimiters.nvim",
     event = "BufReadPost",
     config = function()
-      require("rainbow-delimiters.setup").setup {
-        strategy = {
-          [""] = require "rainbow-delimiters.strategy.global",
-        },
-        query = {
-          [""] = "rainbow-delimiters",
-          lua = "rainbow-blocks",
-        },
-        highlight = {
-          "RainbowDelimiterRed",
-          "RainbowDelimiterYellow",
-          "RainbowDelimiterBlue",
-          "RainbowDelimiterOrange",
-          "RainbowDelimiterGreen",
-          "RainbowDelimiterViolet",
-          "RainbowDelimiterCyan",
-        },
-      }
+      require("rainbow-delimiters.setup").setup(require "configs.rainbow-delimiters")
     end,
   },
 
   {
     "David-Kunz/cmp-npm",
     dependencies = { "nvim-lua/plenary.nvim" },
-    ft = "json", -- Only load when editing package.json
+    ft = "json",
     config = function()
       require("cmp-npm").setup {}
     end,
@@ -193,7 +124,7 @@ return {
 
   {
     "rachartier/tiny-inline-diagnostic.nvim",
-    event = "LspAttach", -- Load when LSP is ready
+    event = "LspAttach",
     priority = 1000,
     config = function()
       require("tiny-inline-diagnostic").setup()
@@ -205,18 +136,9 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
-    opts = {
-      bigfile = { enabled = true },
-      dashboard = { enabled = true },
-      indent = { enabled = true },
-      input = { enabled = true },
-      notifier = { enabled = true },
-      quickfile = { enabled = true },
-      scroll = { enabled = true },
-      statuscolumn = { enabled = true },
-      words = { enabled = true },
-      lazygit = { enabled = true },
-    },
+    opts = function()
+      return require "configs.snacks"
+    end,
     keys = {
       {
         "<leader>gg",

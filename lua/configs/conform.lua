@@ -1,6 +1,5 @@
 local options = {
   formatters_by_ft = {
-    -- Use Biome for JS/TS stack
     javascript = { "biome" },
     typescript = { "biome" },
     javascriptreact = { "biome" },
@@ -8,8 +7,6 @@ local options = {
     json = { "biome" },
     jsonc = { "biome" },
     lua = { "stylua" },
-
-    -- Fallback to prettier for other web files if you want
     css = { "biome" },
     html = { "biome" },
   },
