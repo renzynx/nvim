@@ -29,12 +29,35 @@ return {
   opts = {
     keymap = {
       preset = 'default',
+      ['<CR>'] = { 'accept', 'fallback' },
     },
     appearance = {
       nerd_font_variant = 'mono',
     },
     completion = {
       documentation = { auto_show = false, auto_show_delay_ms = 500 },
+      menu = {
+        draw = {
+          columns = {
+            { 'kind_icon' },
+            { 'label', 'label_description', gap = 1 },
+          },
+          components = {
+            label_description = {
+              width = { max = 50 },
+              text = function(ctx)
+                -- TypeScript sends import source in 'detail' field, not labelDetails.description
+                local item = ctx.item
+                if item.detail and item.detail ~= '' then
+                  return item.detail
+                end
+                return ctx.label_description
+              end,
+              highlight = 'BlinkCmpLabelDescription',
+            },
+          },
+        },
+      },
     },
     sources = {
       default = { 'lsp', 'path', 'snippets', 'lazydev' },
