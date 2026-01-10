@@ -22,16 +22,14 @@ vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = '[B]uffer [D]elet
 
 -- Code
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Show hover documentation' })
-vim.keymap.set('n', '<leader>cd', vim.diagnostic.setloclist, { desc = '[C]ode [D]iagnostic list' })
+vim.keymap.set('n', '<leader>cd', function()
+  vim.diagnostic.open_float(nil, { focus = false, border = 'rounded' })
+end, { desc = '[C]ode [D]iagnostic float' })
 vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction' })
 vim.keymap.set('n', '<leader>co', function()
-  vim.lsp.buf.code_action {
-    context = {
-      only = { 'source.organizeImports.biome' },
-      diagnostics = {},
-    },
-    apply = true,
-  }
+  local file = vim.fn.expand('%:p')
+  vim.cmd('silent !biome check --write ' .. vim.fn.shellescape(file))
+  vim.cmd('edit!')
 end, { desc = '[C]ode [O]rganize imports' })
 
 -- Delete without yanking

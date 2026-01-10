@@ -215,6 +215,9 @@ return {
       formatters = {
         biome = {
           require_cwd = true,
+          command = 'biome',
+          args = { 'check', '--write', '--stdin-file-path', '$FILENAME' },
+          stdin = true,
         },
       },
     },

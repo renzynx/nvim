@@ -8,7 +8,7 @@ vim.g.have_nerd_font = true
 
 -- Make line numbers default
 vim.o.number = true
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
