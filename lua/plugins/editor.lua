@@ -31,6 +31,14 @@ return {
   {
     'jake-stewart/multicursor.nvim',
     branch = '1.0',
+    keys = {
+      { '<M-c>', mode = { 'n', 'x' }, desc = 'Add cursor down' },
+      { '<M-C>', mode = { 'n', 'x' }, desc = 'Add cursor up' },
+      { '<M-d>', mode = { 'n', 'x' }, desc = 'Select next occurrence' },
+      { '<M-D>', mode = { 'n', 'x' }, desc = 'Select prev occurrence' },
+      { '<M-s>', mode = { 'n', 'x' }, desc = 'Skip and select next' },
+      { '<c-leftmouse>', mode = 'n', desc = 'Add cursor with mouse' },
+    },
     config = function()
       local mc = require 'multicursor-nvim'
       mc.setup()
@@ -307,34 +315,7 @@ return {
         end,
         desc = 'Find Files',
       },
-      {
-        '<leader>uC',
-        function()
-          local before = vim.g.colors_name
-          Snacks.picker.colorschemes({
-            live = true,
-            confirm = function(picker, item)
-              if item then
-                local name = item.text or item[1] or item.name or item
-                if type(name) == 'table' then name = name.text or name[1] end
-                vim.cmd.colorscheme(name)
-                local theme_file = vim.fn.stdpath('config') .. '/lua/core/theme.lua'
-                local file = io.open(theme_file, 'w')
-                if file then
-                  file:write('vim.cmd.colorscheme("' .. name .. '")\n')
-                  file:close()
-                end
-              end
-              picker:close()
-            end,
-            cancel = function(picker)
-              vim.cmd.colorscheme(before)
-              picker:close()
-            end,
-          })
-        end,
-        desc = 'Colorscheme Picker',
-      },
+
     },
   },
 

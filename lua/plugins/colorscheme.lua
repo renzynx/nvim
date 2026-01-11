@@ -1,59 +1,23 @@
 return {
   {
-    'Shatur/neovim-ayu',
-    priority = 1000,
+    'vague2k/huez.nvim',
+    import = 'huez-manager.import',
+    branch = 'stable',
     lazy = false,
-  },
-  {
-    'folke/tokyonight.nvim',
     priority = 1000,
-    lazy = false,
+    keys = {
+      { '<leader>uC', '<cmd>Huez<cr>', desc = 'Colorscheme Picker' },
+      { '<leader>uT', '<cmd>HuezLive<cr>', desc = 'Browse Theme Registry' },
+    },
     opts = {
-      styles = {
-        comments = { italic = false },
+      exclude = {
+        'desert', 'evening', 'industry', 'koehler', 'morning', 'murphy',
+        'pablo', 'peachpuff', 'ron', 'shine', 'slate', 'torte', 'zellner',
+        'blue', 'darkblue', 'delek', 'quiet', 'elflord', 'habamax',
+        'lunaperche', 'zaibatsu', 'wildcharm', 'sorbet', 'vim', 'default',
+        'randomhue', 'miniwinter', 'minisummer', 'minispring', 'minischeme',
+        'minicyan', 'miniautumn',
       },
     },
-  },
-  {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    priority = 1000,
-    lazy = false,
-    opts = {},
-  },
-  {
-    'rose-pine/neovim',
-    name = 'rose-pine',
-    priority = 1000,
-    lazy = false,
-    opts = {},
-  },
-  {
-    'rebelot/kanagawa.nvim',
-    priority = 1000,
-    lazy = false,
-    opts = {},
-  },
-  {
-    'sainnhe/gruvbox-material',
-    priority = 1000,
-    lazy = false,
-  },
-  {
-    'EdenEast/nightfox.nvim',
-    priority = 1000,
-    lazy = false,
-    opts = {},
-  },
-  {
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    lazy = false,
-    opts = {},
-  },
-  {
-    'projekt0n/github-nvim-theme',
-    priority = 1000,
-    lazy = false,
   },
 }
